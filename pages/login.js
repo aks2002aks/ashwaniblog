@@ -104,6 +104,7 @@ const Login = () => {
                 value={email}
                 name="email"
                 autoComplete="username"
+                required
               />
             </div>
 
@@ -118,6 +119,7 @@ const Login = () => {
                 onChange={handlechange}
                 value={password}
                 autoComplete="current-password"
+                required
               />
             </div>
             <div className="py-2">
