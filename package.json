@@ -21,7 +21,8 @@
     "react-code-blocks": "^0.0.9-0",
     "react-dom": "18.1.0",
     "react-toastify": "^9.0.3",
-    "react-top-loading-bar": "^2.1.0"
+    "react-top-loading-bar": "^2.1.0",
+    "typewriter-effect": "^2.18.2"
   },
   "devDependencies": {
     "@types/bootstrap": "^5.1.12",

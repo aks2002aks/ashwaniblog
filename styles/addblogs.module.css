@@ -1,16 +1,19 @@
 .postcard {
-    flex-wrap: wrap;
-    display: flex;
-    box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.66);
-    box-shadow: -3px -3px 7px #000000b2, 3px 3px 5px rgba(0, 0, 0, 0.66);
-    border-radius: 10px;
+  flex-wrap: wrap;
+  display: flex;
+  box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.66);
+  box-shadow: -3px -3px 7px #000000b2, 3px 3px 5px rgba(0, 0, 0, 0.66);
+  border-radius: 10px;
 
-    overflow: hidden;
-    position: relative;
-    color: #ffffff;
-    
-  }
+  overflow: hidden;
+  position: relative;
+  color: #ffffff;
+}
 
-  .postcard.dark {
-    background-color: #18151f;
-  }
+.postcard.dark {
+  background-color: #18151f;
+}
+
+.form-label input {
+  color: white;
+}

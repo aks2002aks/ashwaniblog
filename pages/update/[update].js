@@ -66,7 +66,7 @@ const update = ({ isadmin, blogs, success }) => {
       token,
       downloadlink,
     };
-    console.log(data);
+
     let res = await fetch("../api/updateblog", {
       method: "POST",
       headers: {
@@ -177,12 +177,14 @@ const update = ({ isadmin, blogs, success }) => {
 
                 <input
                   type="text-area"
-                  className="form-control opacity-25 input-lg"
+                  className="form-control  input-lg"
+                  style={{backgroundColor:"gray"}}
                   id="Slug"
                   name="slug"
                   aria-describedby="emailHelp"
                   onChange={handlechange}
                   value={slug}
+                  
                 />
 
                 <div id="emailHelp" className="form-text">
@@ -195,7 +197,8 @@ const update = ({ isadmin, blogs, success }) => {
                 </label>
                 <input
                   type="text-area"
-                  className="form-control opacity-25 input-lg"
+                  className="form-control  input-lg"
+                  style={{backgroundColor:"gray"}}
                   id="Imageurl"
                   name="imageUrl"
                   aria-describedby="emailHelp"
@@ -209,7 +212,8 @@ const update = ({ isadmin, blogs, success }) => {
                 </label>
                 <input
                   type="text-area"
-                  className="form-control opacity-25 input-lg"
+                  className="form-control  input-lg"
+                  style={{backgroundColor:"gray"}}
                   id="title"
                   name="title"
                   aria-describedby="emailHelp"
@@ -223,7 +227,8 @@ const update = ({ isadmin, blogs, success }) => {
                 </label>
                 <input
                   type="text-area"
-                  className="form-control opacity-25 input-lg"
+                  className="form-control  input-lg"
+                  style={{backgroundColor:"gray"}}
                   id="subtitle"
                   name="subtitle"
                   aria-describedby="emailHelp"
@@ -237,7 +242,8 @@ const update = ({ isadmin, blogs, success }) => {
                 </label>
                 <input
                   type="text-area"
-                  className="form-control opacity-25 input-lg"
+                  className="form-control  input-lg"
+                  style={{backgroundColor:"gray"}}
                   id="date"
                   name="date"
                   aria-describedby="emailHelp"
@@ -255,7 +261,8 @@ const update = ({ isadmin, blogs, success }) => {
                 </label>
                 <textarea
                   type="text-area"
-                  className="form-control opacity-25 input-lg"
+                  className="form-control  input-lg"
+                  style={{backgroundColor:"gray"}}
                   id="description"
                   name="description"
                   aria-describedby="emailHelp"
@@ -272,7 +279,8 @@ const update = ({ isadmin, blogs, success }) => {
                     </label>
                     <input
                       type="text-area"
-                      className="form-control opacity-25 input-lg"
+                      className="form-control  input-lg"
+                      style={{backgroundColor:"gray"}}
                       id="tag1"
                       name="tag1"
                       aria-describedby="emailHelp"
@@ -286,7 +294,8 @@ const update = ({ isadmin, blogs, success }) => {
                     </label>
                     <input
                       type="text-area"
-                      className="form-control opacity-25 input-lg"
+                      className="form-control  input-lg"
+                      style={{backgroundColor:"gray"}}
                       id="tag2"
                       name="tag2"
                       aria-describedby="emailHelp"
@@ -304,7 +313,8 @@ const update = ({ isadmin, blogs, success }) => {
                     </label>
                     <input
                       type="text-area"
-                      className="form-control opacity-25 input-lg"
+                      className="form-control  input-lg"
+                      style={{backgroundColor:"gray"}}
                       id="tag3"
                       name="tag3"
                       aria-describedby="emailHelp"
@@ -318,7 +328,8 @@ const update = ({ isadmin, blogs, success }) => {
                     </label>
                     <input
                       type="text-area"
-                      className="form-control opacity-25 input-lg"
+                      className="form-control  input-lg"
+                      style={{backgroundColor:"gray"}}
                       id="codelanguage"
                       name="codelanguage"
                       aria-describedby="emailHelp"
@@ -334,7 +345,8 @@ const update = ({ isadmin, blogs, success }) => {
                 </label>
                 <textarea
                   type="text-area"
-                  className="form-control opacity-25 input-lg"
+                  className="form-control  input-lg"
+                  style={{backgroundColor:"gray"}}
                   id="content"
                   name="content"
                   aria-describedby="emailHelp"
@@ -372,7 +384,8 @@ const update = ({ isadmin, blogs, success }) => {
                 </label>
                 <textarea
                   type="text-area"
-                  className="form-control opacity-25 input-lg"
+                  className="form-control  input-lg"
+                  style={{backgroundColor:"gray"}}
                   id="code"
                   name="code"
                   aria-describedby="emailHelp"
@@ -387,7 +400,8 @@ const update = ({ isadmin, blogs, success }) => {
                 </label>
                 <input
                   type="text-area"
-                  className="form-control opacity-25 input-lg"
+                  className="form-control  input-lg"
+                  style={{backgroundColor:"gray"}}
                   id="downloadlink"
                   name="downloadlink"
                   aria-describedby="emailHelp"

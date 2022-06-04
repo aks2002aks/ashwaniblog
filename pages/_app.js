@@ -16,6 +16,7 @@ function MyApp({ Component, pageProps }) {
   const [isadmin, setisadmin] = useState(false);
   const [key, setkey] = useState(0);
   const [progress, setProgress] = useState(0);
+  const [username, setusername] = useState();
 
   useEffect(() => {
     router.events.on("routeChangeStart", () => {
@@ -24,7 +25,6 @@ function MyApp({ Component, pageProps }) {
     router.events.on("routeChangeComplete", () => {
       setProgress(100);
     });
-
     const token = localStorage.getItem("token");
     if (token) {
       try {
@@ -32,10 +32,12 @@ function MyApp({ Component, pageProps }) {
         setisadmin(decode.IsAdmin);
         setuser({ value: token });
         setkey(Math.random());
+        setusername(decode.name);
       } catch (err) {
         logout();
         setisadmin(false);
         setkey(Math.random());
+        setusername();
       }
     }
   }, [router.query]);
@@ -62,7 +64,7 @@ function MyApp({ Component, pageProps }) {
       />
       <Navbar key={key} user={user} logout={logout} isadmin={isadmin} />
 
-      <Component {...pageProps} isadmin={isadmin} />
+      <Component {...pageProps} isadmin={isadmin} username={username} />
 
       <Footer />
       <Script
