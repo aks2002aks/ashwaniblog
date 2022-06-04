@@ -58,25 +58,23 @@ const Home = ({ blogs, success, isadmin, username }) => {
           )}
         </div>
         <div className="text-center fw-bold py-1" style={{ color: "orange" }}>
-          {username && token && (
-            <div>
-              <u>Fun Facts</u>
-              <Typewriter
-                options={{
-                  strings: [
-                    "When I wrote this code, only God and I understood what I did. Now only God knows.",
-                    "Copy-and-Paste was programmed by programmers for programmers actually.",
-                    "Programming is like sex: One mistake and you have to support it for the rest of your life.",
-                    "Algorithm: Word used by programmers when they don’t want to explain what they did.",
-                    "99 little bugs in the code. 99 little bugs in the code. Take one down, patch it around. 127 little bugs in the code …",
-                    "Q: How different are C and C++? A: 1. Because C — C++ = 1",
-                  ],
-                  autoStart: true,
-                  loop: true,
-                }}
-              ></Typewriter>
-            </div>
-          )}
+          <div>
+            <u>Fun Facts</u>
+            <Typewriter
+              options={{
+                strings: [
+                  "When I wrote this code, only God and I understood what I did. Now only God knows.",
+                  "Copy-and-Paste was programmed by programmers for programmers actually.",
+                  "Programming is like sex: One mistake and you have to support it for the rest of your life.",
+                  "Algorithm: Word used by programmers when they don’t want to explain what they did.",
+                  "99 little bugs in the code. 99 little bugs in the code. Take one down, patch it around. 127 little bugs in the code …",
+                  "Q: How different are C and C++? A: 1. Because C — C++ = 1",
+                ],
+                autoStart: true,
+                loop: true,
+              }}
+            ></Typewriter>
+          </div>
         </div>
         <form onSubmit={handlesubmit} className="d-flex py-5" role="search">
           <input
