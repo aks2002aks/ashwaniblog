@@ -8,8 +8,8 @@ import mongoose from "mongoose";
 import Adminerror from "../../components/error/Adminerror";
 import { useRouter } from "next/router";
 
-const update = ({ isadmin, blogs, success }) => {
-  const router = useRouter();
+const Update = ({ isadmin, blogs, success }) => {
+  const Router = useRouter();
   const id = blogs[0]._id;
   const [slug, setslug] = useState("");
   const [imageUrl, setimageUrl] = useState("");
@@ -27,7 +27,7 @@ const update = ({ isadmin, blogs, success }) => {
 
   useEffect(() => {
     if (!localStorage.getItem("token")) {
-      router.push("/login");
+      Router.push("/login");
     }
     if (success) {
       setslug(blogs[0].slug);
@@ -87,7 +87,7 @@ const update = ({ isadmin, blogs, success }) => {
         progress: undefined,
       });
       setTimeout(() => {
-        router.push("/");
+        Router.push("/");
       }, 2000);
     } else {
       toast.error(response.error, {
@@ -100,7 +100,7 @@ const update = ({ isadmin, blogs, success }) => {
         progress: undefined,
       });
       setTimeout(() => {
-        router.push("/");
+        Router.push("/");
       }, 2000);
     }
 
@@ -178,13 +178,12 @@ const update = ({ isadmin, blogs, success }) => {
                 <input
                   type="text-area"
                   className="form-control  input-lg"
-                  style={{backgroundColor:"gray"}}
+                  style={{ backgroundColor: "gray" }}
                   id="Slug"
                   name="slug"
                   aria-describedby="emailHelp"
                   onChange={handlechange}
                   value={slug}
-                  
                 />
 
                 <div id="emailHelp" className="form-text">
@@ -198,7 +197,7 @@ const update = ({ isadmin, blogs, success }) => {
                 <input
                   type="text-area"
                   className="form-control  input-lg"
-                  style={{backgroundColor:"gray"}}
+                  style={{ backgroundColor: "gray" }}
                   id="Imageurl"
                   name="imageUrl"
                   aria-describedby="emailHelp"
@@ -213,7 +212,7 @@ const update = ({ isadmin, blogs, success }) => {
                 <input
                   type="text-area"
                   className="form-control  input-lg"
-                  style={{backgroundColor:"gray"}}
+                  style={{ backgroundColor: "gray" }}
                   id="title"
                   name="title"
                   aria-describedby="emailHelp"
@@ -228,7 +227,7 @@ const update = ({ isadmin, blogs, success }) => {
                 <input
                   type="text-area"
                   className="form-control  input-lg"
-                  style={{backgroundColor:"gray"}}
+                  style={{ backgroundColor: "gray" }}
                   id="subtitle"
                   name="subtitle"
                   aria-describedby="emailHelp"
@@ -243,7 +242,7 @@ const update = ({ isadmin, blogs, success }) => {
                 <input
                   type="text-area"
                   className="form-control  input-lg"
-                  style={{backgroundColor:"gray"}}
+                  style={{ backgroundColor: "gray" }}
                   id="date"
                   name="date"
                   aria-describedby="emailHelp"
@@ -262,7 +261,7 @@ const update = ({ isadmin, blogs, success }) => {
                 <textarea
                   type="text-area"
                   className="form-control  input-lg"
-                  style={{backgroundColor:"gray"}}
+                  style={{ backgroundColor: "gray" }}
                   id="description"
                   name="description"
                   aria-describedby="emailHelp"
@@ -280,7 +279,7 @@ const update = ({ isadmin, blogs, success }) => {
                     <input
                       type="text-area"
                       className="form-control  input-lg"
-                      style={{backgroundColor:"gray"}}
+                      style={{ backgroundColor: "gray" }}
                       id="tag1"
                       name="tag1"
                       aria-describedby="emailHelp"
@@ -295,7 +294,7 @@ const update = ({ isadmin, blogs, success }) => {
                     <input
                       type="text-area"
                       className="form-control  input-lg"
-                      style={{backgroundColor:"gray"}}
+                      style={{ backgroundColor: "gray" }}
                       id="tag2"
                       name="tag2"
                       aria-describedby="emailHelp"
@@ -314,7 +313,7 @@ const update = ({ isadmin, blogs, success }) => {
                     <input
                       type="text-area"
                       className="form-control  input-lg"
-                      style={{backgroundColor:"gray"}}
+                      style={{ backgroundColor: "gray" }}
                       id="tag3"
                       name="tag3"
                       aria-describedby="emailHelp"
@@ -329,7 +328,7 @@ const update = ({ isadmin, blogs, success }) => {
                     <input
                       type="text-area"
                       className="form-control  input-lg"
-                      style={{backgroundColor:"gray"}}
+                      style={{ backgroundColor: "gray" }}
                       id="codelanguage"
                       name="codelanguage"
                       aria-describedby="emailHelp"
@@ -346,7 +345,7 @@ const update = ({ isadmin, blogs, success }) => {
                 <textarea
                   type="text-area"
                   className="form-control  input-lg"
-                  style={{backgroundColor:"gray"}}
+                  style={{ backgroundColor: "gray" }}
                   id="content"
                   name="content"
                   aria-describedby="emailHelp"
@@ -385,7 +384,7 @@ const update = ({ isadmin, blogs, success }) => {
                 <textarea
                   type="text-area"
                   className="form-control  input-lg"
-                  style={{backgroundColor:"gray"}}
+                  style={{ backgroundColor: "gray" }}
                   id="code"
                   name="code"
                   aria-describedby="emailHelp"
@@ -401,7 +400,7 @@ const update = ({ isadmin, blogs, success }) => {
                 <input
                   type="text-area"
                   className="form-control  input-lg"
-                  style={{backgroundColor:"gray"}}
+                  style={{ backgroundColor: "gray" }}
                   id="downloadlink"
                   name="downloadlink"
                   aria-describedby="emailHelp"
@@ -462,4 +461,4 @@ export async function getServerSideProps(context) {
   }
 }
 
-export default update;
+export default Update;
