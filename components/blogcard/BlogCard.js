@@ -1,12 +1,82 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../../styles/BlogCard.module.css";
 import Link from "next/link";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-function BlogCard({ blogs, success }) {
+function BlogCard({ blogs, success, isadmin }) {
+  const [blog, setblog] = useState(blogs);
+
+  const handledelete = async (slug) => {
+    if (confirm("Do You Want To Delete, Once Done Cannot Get Back")) {
+      const token = localStorage.getItem("token");
+      const data = {
+        slug,
+        token,
+      };
+
+      let res = await fetch("api/deleteblogs", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      let response = await res.json();
+
+      if (response.success) {
+        toast.success("Your Blog has Been deleted", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        const newblog = blog.filter((blg) => {
+          return blg.slug !== slug;
+        });
+        setblog(newblog);
+      } else {
+        toast.error(response.error, {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    } else {
+      toast.error("Declined , Blog Not Deleted", {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  };
+
   return (
-    <main className="container">
+    <main className="container min-vh-100">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       {success &&
-        blogs.map((item, index) => {
+        blog.map((item, index) => {
           return (
             <div key={item._id}>
               <article
@@ -32,6 +102,22 @@ function BlogCard({ blogs, success }) {
                   </a>
                 </Link>
                 <div className={`${styles.postcard__text} ${styles.tdark}`}>
+                  {isadmin && (
+                    <div>
+                      <Link href={`/update/${item.slug}`}>
+                        <i
+                          className="fa-regular fa-pen-to-square fa-lg p-2"
+                          style={{ cursor: "pointer" }}
+                        ></i>
+                      </Link>
+
+                      <i
+                        className="fa-solid fa-trash fa-lg p-2"
+                        style={{ cursor: "pointer" }}
+                        onClick={() => handledelete(item.slug)}
+                      ></i>
+                    </div>
+                  )}
                   <Link href={`/blogposts/${item.slug}`}>
                     <h1 className={`${styles.postcard__title} ${styles.blue} `}>
                       <a href="#">{item.title}</a>

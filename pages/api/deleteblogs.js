@@ -18,7 +18,6 @@ const handler = async (req, res) => {
         } else {
           res.status(200).json({ danger: "Not found" });
         }
-        res.status(200).json({ success: "deleted successfully" });
       } else {
         res.status(400).json({
           success: true,

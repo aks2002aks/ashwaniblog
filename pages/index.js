@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 import { useState } from "react";
 import { useRouter } from "next/router";
 
-const Home = ({ blogs, success }) => {
+const Home = ({ blogs, success ,isadmin}) => {
   const router = useRouter();
   const [search, setsearch] = useState();
   const handlechange = (e) => {
@@ -44,7 +44,7 @@ const Home = ({ blogs, success }) => {
           </button>
         </form>
       </div>
-      <BlogCard blogs={blogs} success={success} />
+      <BlogCard blogs={blogs} success={success} isadmin={isadmin}/>
     </div>
   );
 };

@@ -14,8 +14,9 @@ const BlogSchema = new mongoose.Schema(
     content: { type: String },
     code: { type: String },
     codelanguage: { type: String },
+    downloadlink: { type: String },
   },
   { timestamps: true }
 );
 
-export default mongoose.models.blog || mongoose.model("blog",BlogSchema);
+export default mongoose.models.blog || mongoose.model("blog", BlogSchema);

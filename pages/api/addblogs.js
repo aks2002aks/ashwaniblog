@@ -8,7 +8,6 @@ const handler = async (req, res) => {
   try {
     if (req.method == "POST") {
       const decode = await jwt.verify(req.body.token, process.env.JWT_TOKEN);
-
       if (decode.IsAdmin) {
         let b = new Blogs({
           slug: req.body.slug,
@@ -23,6 +22,7 @@ const handler = async (req, res) => {
           content: req.body.content,
           code: req.body.code,
           codelanguage: req.body.codelanguage,
+          downloadlink: req.body.downloadlink,
         });
         await b.save();
         res

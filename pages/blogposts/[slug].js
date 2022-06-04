@@ -79,6 +79,23 @@ const slug = ({ blogs, success }) => {
                     </div>
                   )}
                 </div>
+                <div
+                  className="container p-5"
+                  style={{ backgroundColor: "#18151f", color: "white" }}
+                >
+                  {item.downloadlink && (
+                    <div>
+                      <h5>Downlaod Link: <a
+                        href={item.downloadlink}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {item.downloadlink}.pdf
+                      </a></h5>
+                      
+                    </div>
+                  )}
+                </div>
               </div>
             );
           })}

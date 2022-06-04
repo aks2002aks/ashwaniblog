@@ -1,30 +1,48 @@
 import React from "react";
-import styles from "../styles/addblogs.module.css";
+import styles from "../../styles/addblogs.module.css";
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Blogs from "../../models/BlogsModel";
+import mongoose from "mongoose";
+import Adminerror from "../../components/error/Adminerror";
 import { useRouter } from "next/router";
-import Adminerror from "../components/error/Adminerror";
 
-const Addblogs = ({ isadmin }) => {
+const update = ({ isadmin, blogs, success }) => {
   const router = useRouter();
-  const [slug, setslug] = useState();
-  const [imageUrl, setimageUrl] = useState();
-  const [title, settitle] = useState();
-  const [date, setdate] = useState();
-  const [subtitle, setsubtitle] = useState();
-  const [description, setdescription] = useState();
-  const [tag1, settag1] = useState();
-  const [tag2, settag2] = useState();
-  const [tag3, settag3] = useState();
-  const [content, setcontent] = useState();
-  const [code, setcode] = useState();
-  const [codelanguage, setcodelanguage] = useState();
-  const [downloadlink, setdownloadlink] = useState();
+  const id = blogs[0]._id;
+  const [slug, setslug] = useState("");
+  const [imageUrl, setimageUrl] = useState("");
+  const [title, settitle] = useState("");
+  const [date, setdate] = useState("");
+  const [subtitle, setsubtitle] = useState("");
+  const [description, setdescription] = useState("");
+  const [tag1, settag1] = useState("");
+  const [tag2, settag2] = useState("");
+  const [tag3, settag3] = useState("");
+  const [content, setcontent] = useState("");
+  const [code, setcode] = useState("");
+  const [codelanguage, setcodelanguage] = useState("");
+  const [downloadlink, setdownloadlink] = useState("");
 
   useEffect(() => {
     if (!localStorage.getItem("token")) {
       router.push("/login");
+    }
+    if (success) {
+      setslug(blogs[0].slug);
+      setimageUrl(blogs[0].imageUrl);
+      settitle(blogs[0].title);
+      setdate(blogs[0].date);
+      setsubtitle(blogs[0].subtitle);
+      setdescription(blogs[0].description);
+      settag1(blogs[0].tag1);
+      settag2(blogs[0].tag2);
+      settag3(blogs[0].tag3);
+      setcontent(blogs[0].content);
+      setcode(blogs[0].code);
+      setcodelanguage(blogs[0].codelanguage);
+      setdownloadlink(blogs[0].downloadlink);
     }
   }, []);
 
@@ -32,6 +50,7 @@ const Addblogs = ({ isadmin }) => {
     const token = localStorage.getItem("token");
     e.preventDefault();
     const data = {
+      id,
       slug,
       imageUrl,
       title,
@@ -47,8 +66,8 @@ const Addblogs = ({ isadmin }) => {
       token,
       downloadlink,
     };
-
-    let res = await fetch("api/addblogs", {
+    console.log(data);
+    let res = await fetch("../api/updateblog", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -58,7 +77,7 @@ const Addblogs = ({ isadmin }) => {
     let response = await res.json();
 
     if (response.success) {
-      toast.success("Your Blog has Been Added", {
+      toast.success("Your Blog has Been updated", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -67,6 +86,9 @@ const Addblogs = ({ isadmin }) => {
         draggable: true,
         progress: undefined,
       });
+      setTimeout(() => {
+        router.push("/");
+      }, 2000);
     } else {
       toast.error(response.error, {
         position: "top-right",
@@ -77,6 +99,9 @@ const Addblogs = ({ isadmin }) => {
         draggable: true,
         progress: undefined,
       });
+      setTimeout(() => {
+        router.push("/");
+      }, 2000);
     }
 
     setslug("");
@@ -119,7 +144,7 @@ const Addblogs = ({ isadmin }) => {
       setcode(e.target.value);
     } else if (e.target.name == "codelanguage") {
       setcodelanguage(e.target.value);
-    }else if (e.target.name == "downloadlink") {
+    } else if (e.target.name == "downloadlink") {
       setdownloadlink(e.target.value);
     }
   };
@@ -375,7 +400,7 @@ const Addblogs = ({ isadmin }) => {
               </div>
               <div className="d-flex justify-content-center">
                 <button type="submit" className="btn btn-secondary">
-                  Submit
+                  Update Blog
                 </button>
               </div>
             </form>
@@ -388,4 +413,39 @@ const Addblogs = ({ isadmin }) => {
   );
 };
 
-export default Addblogs;
+export async function getServerSideProps(context) {
+  try {
+    const update = context.query.update;
+    if (!mongoose.connections[0].readyState) {
+      mongoose.connect(process.env.MONGO_URI, {
+        dbName: process.env.MONGO_DBNAME,
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      });
+    }
+    let blogs = await Blogs.find({ slug: update });
+
+    if (blogs.length >= 0) {
+      return {
+        props: {
+          blogs: JSON.parse(JSON.stringify(blogs)),
+          success: true,
+        }, // will be passed to the page component as props
+      };
+    } else {
+      return {
+        props: {
+          success: false,
+        }, // will be passed to the page component as props
+      };
+    }
+  } catch (error) {
+    return {
+      props: {
+        success: false,
+      }, // will be passed to the page component as props
+    };
+  }
+}
+
+export default update;
