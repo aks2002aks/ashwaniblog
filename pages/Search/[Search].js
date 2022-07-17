@@ -134,7 +134,7 @@ export async function getServerSideProps(context) {
       });
     }
     let blogs = await Blogs.find({ $text: { $search: search } }).sort({
-      date: -1,
+      date: 1,
     });
     if (blogs.length > 0) {
       return {
